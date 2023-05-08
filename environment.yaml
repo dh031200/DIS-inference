@@ -1,0 +1,15 @@
+name: DIS
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - opencv
+  - pytorch=2.0.0
+  - pytorch-cuda=11.7
+  - torchvision
+  - gdown
+  - pyyaml
