@@ -24,14 +24,14 @@ class REBNCONV(nn.Module):
         return xout
 
 
-## upsample tensor 'src' to have the same spatial size with tensor 'tar'
+# upsample tensor 'src' to have the same spatial size with tensor 'tar'
 def _upsample_like(src, tar):
     src = F.interpolate(src, size=tar.shape[2:], mode="bilinear")
 
     return src
 
 
-### RSU-7 ###
+# RSU-7
 class RSU7(nn.Module):
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3, img_size=512):
         super(RSU7, self).__init__()
@@ -40,7 +40,7 @@ class RSU7(nn.Module):
         self.mid_ch = mid_ch
         self.out_ch = out_ch
 
-        self.rebnconvin = REBNCONV(in_ch, out_ch, dirate=1)  ## 1 -> 1/2
+        self.rebnconvin = REBNCONV(in_ch, out_ch, dirate=1)  # 1 -> 1/2
 
         self.rebnconv1 = REBNCONV(out_ch, mid_ch, dirate=1)
         self.pool1 = nn.MaxPool2d(2, stride=2, ceil_mode=True)
@@ -111,7 +111,7 @@ class RSU7(nn.Module):
         return hx1d + hxin
 
 
-### RSU-6 ###
+# RSU-6
 class RSU6(nn.Module):
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU6, self).__init__()
@@ -178,7 +178,7 @@ class RSU6(nn.Module):
         return hx1d + hxin
 
 
-### RSU-5 ###
+# RSU-5
 class RSU5(nn.Module):
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU5, self).__init__()
@@ -235,7 +235,7 @@ class RSU5(nn.Module):
         return hx1d + hxin
 
 
-### RSU-4 ###
+# RSU-4
 class RSU4(nn.Module):
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU4, self).__init__()
@@ -282,7 +282,7 @@ class RSU4(nn.Module):
         return hx1d + hxin
 
 
-### RSU-4F ###
+# RSU-4F
 class RSU4F(nn.Module):
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU4F, self).__init__()
