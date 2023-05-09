@@ -2,18 +2,20 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-bce_loss = nn.BCELoss(reduction='mean')
-fea_loss = nn.MSELoss(reduction='mean')
-kl_loss = nn.KLDivLoss(reduction='mean')
-l1_loss = nn.L1Loss(reduction='mean')
-smooth_l1_loss = nn.SmoothL1Loss(reduction='mean')
+bce_loss = nn.BCELoss(reduction="mean")
+fea_loss = nn.MSELoss(reduction="mean")
+kl_loss = nn.KLDivLoss(reduction="mean")
+l1_loss = nn.L1Loss(reduction="mean")
+smooth_l1_loss = nn.SmoothL1Loss(reduction="mean")
 
 
 class REBNCONV(nn.Module):
     def __init__(self, in_ch=3, out_ch=3, dirate=1, stride=1):
         super(REBNCONV, self).__init__()
 
-        self.conv_s1 = nn.Conv2d(in_ch, out_ch, 3, padding=1 * dirate, dilation=1 * dirate, stride=stride)
+        self.conv_s1 = nn.Conv2d(
+            in_ch, out_ch, 3, padding=1 * dirate, dilation=1 * dirate, stride=stride
+        )
         self.bn_s1 = nn.BatchNorm2d(out_ch)
         self.relu_s1 = nn.ReLU(inplace=True)
 
@@ -26,14 +28,13 @@ class REBNCONV(nn.Module):
 
 ## upsample tensor 'src' to have the same spatial size with tensor 'tar'
 def _upsample_like(src, tar):
-    src = F.interpolate(src, size=tar.shape[2:], mode='bilinear')
+    src = F.interpolate(src, size=tar.shape[2:], mode="bilinear")
 
     return src
 
 
 ### RSU-7 ###
 class RSU7(nn.Module):
-
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3, img_size=512):
         super(RSU7, self).__init__()
 
@@ -114,7 +115,6 @@ class RSU7(nn.Module):
 
 ### RSU-6 ###
 class RSU6(nn.Module):
-
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU6, self).__init__()
 
@@ -182,7 +182,6 @@ class RSU6(nn.Module):
 
 ### RSU-5 ###
 class RSU5(nn.Module):
-
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU5, self).__init__()
 
@@ -240,7 +239,6 @@ class RSU5(nn.Module):
 
 ### RSU-4 ###
 class RSU4(nn.Module):
-
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU4, self).__init__()
 
@@ -288,7 +286,6 @@ class RSU4(nn.Module):
 
 ### RSU-4F ###
 class RSU4F(nn.Module):
-
     def __init__(self, in_ch=3, mid_ch=12, out_ch=3):
         super(RSU4F, self).__init__()
 
@@ -323,22 +320,27 @@ class RSU4F(nn.Module):
 
 
 class myrebnconv(nn.Module):
-    def __init__(self, in_ch=3,
-                 out_ch=1,
-                 kernel_size=3,
-                 stride=1,
-                 padding=1,
-                 dilation=1,
-                 groups=1):
+    def __init__(
+        self,
+        in_ch=3,
+        out_ch=1,
+        kernel_size=3,
+        stride=1,
+        padding=1,
+        dilation=1,
+        groups=1,
+    ):
         super(myrebnconv, self).__init__()
 
-        self.conv = nn.Conv2d(in_ch,
-                              out_ch,
-                              kernel_size=kernel_size,
-                              stride=stride,
-                              padding=padding,
-                              dilation=dilation,
-                              groups=groups)
+        self.conv = nn.Conv2d(
+            in_ch,
+            out_ch,
+            kernel_size=kernel_size,
+            stride=stride,
+            padding=padding,
+            dilation=dilation,
+            groups=groups,
+        )
         self.bn = nn.BatchNorm2d(out_ch)
         self.rl = nn.ReLU(inplace=True)
 
@@ -347,7 +349,6 @@ class myrebnconv(nn.Module):
 
 
 class ISNetGTEncoder(nn.Module):
-
     def __init__(self, in_ch=1, out_ch=1):
         super(ISNetGTEncoder, self).__init__()
 
@@ -376,7 +377,6 @@ class ISNetGTEncoder(nn.Module):
         self.side4 = nn.Conv2d(256, out_ch, 3, padding=1)
         self.side5 = nn.Conv2d(512, out_ch, 3, padding=1)
         self.side6 = nn.Conv2d(512, out_ch, 3, padding=1)
-
 
     def forward(self, x):
         hx = x
@@ -425,13 +425,17 @@ class ISNetGTEncoder(nn.Module):
         d6 = self.side6(hx6)
         d6 = _upsample_like(d6, x)
 
-        return [F.sigmoid(d1), F.sigmoid(d2), F.sigmoid(d3), F.sigmoid(d4), F.sigmoid(d5), F.sigmoid(d6)], [hx1, hx2,
-                                                                                                            hx3, hx4,
-                                                                                                            hx5, hx6]
+        return [
+            F.sigmoid(d1),
+            F.sigmoid(d2),
+            F.sigmoid(d3),
+            F.sigmoid(d4),
+            F.sigmoid(d5),
+            F.sigmoid(d6),
+        ], [hx1, hx2, hx3, hx4, hx5, hx6]
 
 
 class ISNetDIS(nn.Module):
-
     def __init__(self, in_ch=3, out_ch=1):
         super(ISNetDIS, self).__init__()
 
@@ -532,6 +536,11 @@ class ISNetDIS(nn.Module):
         d6 = self.side6(hx6)
         d6 = _upsample_like(d6, x)
 
-        return [F.sigmoid(d1), F.sigmoid(d2), F.sigmoid(d3), F.sigmoid(d4), F.sigmoid(d5), F.sigmoid(d6)], [hx1d, hx2d,
-                                                                                                            hx3d, hx4d,
-                                                                                                            hx5d, hx6]
+        return [
+            F.sigmoid(d1),
+            F.sigmoid(d2),
+            F.sigmoid(d3),
+            F.sigmoid(d4),
+            F.sigmoid(d5),
+            F.sigmoid(d6),
+        ], [hx1d, hx2d, hx3d, hx4d, hx5d, hx6]
