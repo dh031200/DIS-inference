@@ -13,3 +13,4 @@ dependencies:
   - torchvision
   - gdown
   - pyyaml
+  - pre-commit
