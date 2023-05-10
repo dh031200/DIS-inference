@@ -26,7 +26,7 @@ def dis_inference(source, silent=False):
     inference(source, save=True, silent=silent)
 
 
-def inference(source: Union[str, np.ndarray], save=False, silent=False, output='output'):
+def inference(source: Union[str, np.ndarray], save=False, silent=False, output=None):
     """
     :param source: Source image for inference.
     :param save: Whether to save output image.
@@ -35,10 +35,17 @@ def inference(source: Union[str, np.ndarray], save=False, silent=False, output='
     :return: (numpy.ndarray)dichotomous segmentation image
     """
     if type(source) == str:
-        output, extension = get_name(source)
+        if output:
+            extension = (
+                '.png' if not any([output.endswith('png'), output.endswith('jpg'), output.endswith('jpeg')]) else ''
+            )
+        else:
+            output, extension = get_name(source)
         source = read(source)
     else:
-        extension = '.png' if not any([output.endswith('png'), output.endswith('jpg'), output.endswith('jpeg')]) else ''
+        extension = (
+            '.png' if not any([output.endswith('.png'), output.endswith('.jpg'), output.endswith('.jpeg')]) else ''
+        )
     net = init_model()
     image = pre_processing(source).to(device)
     result = net(image)
