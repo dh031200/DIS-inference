@@ -14,9 +14,9 @@ Inference implementation of Dichotomous Image Segmentation
 
 <br>
 
-| Origin                                                                          | DIS                                                                                |
-|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| ![Before](https://github.com/dh031200/DIS-inference/blob/main/assets/Lenna.png) | ![After](https://github.com/dh031200/DIS-inference/blob/main/assets/Lenna_dis.png) |
+| Origin                                                                                   | DIS                                                                                         |
+|------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| ![Before](https://github.com/dh031200/DIS-inference/blob/main/assets/Lenna.png?raw=true) | ![After](https://github.com/dh031200/DIS-inference/blob/main/assets/Lenna_dis.png?raw=true) |
 
 <br>
 
@@ -51,11 +51,20 @@ Output saved as `Lenna_dis.png`
 ```python
 from dis_inference import inference
 
-# 1. Used in memory
-image = inference('Lenna.png')
-cv2.imwrite('Lenna_dis.png', image)
+# 1. Inference with path
+output = inference('Lenna.png')
+cv2.imwrite('Lenna_dis.png', output)
 
-# 2. With save parameter
+# 2. Inference cv2 image
+image = cv2.imread('Lenna.png')
+output = inference(image)
+cv2.imwrite('Lenna_dis.png', output)
+
+# 3. Inference cv2 image with save parameter
+image = cv2.imread('Lenna.png')
+output = inference(image, save=True, output='Lenna_dis.png')
+
+# 3. With save parameter
 image = inference('Lenna.png', save=True)
 ```
 
