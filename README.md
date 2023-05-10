@@ -10,6 +10,12 @@ Inference implementation of Dichotomous Image Segmentation
 
 <br>
 
+| Origin | DIS |
+|--|--|
+|![Before](assets/Lenna.png)|![After](assets/Lenna_dis.png)|
+
+<br>
+
 **Table of Contents**
 
 - [Installation](#installation)
