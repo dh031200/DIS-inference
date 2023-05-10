@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2023-present Xuebin Qin <xuebin@ualberta.ca>
+#
+# SPDX-License-Identifier: Apache-2.0
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
