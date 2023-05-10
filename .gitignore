@@ -1,4 +1,6 @@
+*.pyc
 *.pth
-/assets/
+
+/.idea
 /output/
 /dist/
