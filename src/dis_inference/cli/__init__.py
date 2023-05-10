@@ -38,7 +38,7 @@ def inference(source: Union[str, np.ndarray], save=False, silent=False, output='
         output, extension = get_name(source)
         source = read(source)
     else:
-        extension = '.png'
+        extension = '.png' if not any([output.endswith('png'), output.endswith('jpg'), output.endswith('jpeg')]) else ''
     net = init_model()
     image = pre_processing(source).to(device)
     result = net(image)

@@ -62,7 +62,7 @@ cv2.imwrite('Lenna_dis.png', output)
 
 # 3. Inference cv2 image with save parameter
 image = cv2.imread('Lenna.png')
-output = inference(image, save=True, output='Lenna')
+output = inference(image, save=True, output='Lenna_dis.png')
 
 # 3. With save parameter
 image = inference('Lenna.png', save=True)
