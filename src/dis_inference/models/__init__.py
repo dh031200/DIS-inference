@@ -44,6 +44,24 @@ def write(path, result, silent):
     cv2.imwrite(path, result)
 
 
+def check_params(source, output):
+    if type(source) == str:
+        if output:
+            extension = (
+                '.png' if not any([output.endswith('png'), output.endswith('jpg'), output.endswith('jpeg')]) else ''
+            )
+        else:
+            output, extension = get_name(source)
+        source = read(source)
+    else:
+        if not output:
+            output = 'output'
+        extension = (
+            '.png' if not any([output.endswith('.png'), output.endswith('.jpg'), output.endswith('.jpeg')]) else ''
+        )
+    return source, output, extension
+
+
 def pre_processing(image):
     if len(image.shape) < 3:
         image = image[:, :, np.newaxis]
@@ -125,8 +143,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 __all__ = (
     "init_model",
-    "get_name",
-    "read",
+    "check_params",
     "write",
     "pre_processing",
     "post_processing",
