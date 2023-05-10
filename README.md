@@ -51,11 +51,20 @@ Output saved as `Lenna_dis.png`
 ```python
 from dis_inference import inference
 
-# 1. Used in memory
-image = inference('Lenna.png')
-cv2.imwrite('Lenna_dis.png', image)
+# 1. Inference with path
+output = inference('Lenna.png')
+cv2.imwrite('Lenna_dis.png', output)
 
-# 2. With save parameter
+# 2. Inference cv2 image
+image = cv2.imread('Lenna.png')
+output = inference(image)
+cv2.imwrite('Lenna_dis.png', output)
+
+# 3. Inference cv2 image with save parameter
+image = cv2.imread('Lenna.png')
+output = inference(image, save=True, output='Lenna')
+
+# 3. With save parameter
 image = inference('Lenna.png', save=True)
 ```
 

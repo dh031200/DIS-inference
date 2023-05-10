@@ -31,7 +31,7 @@ def init_model():
 
 
 def get_name(source):
-    return Path(source).stem, Path(source).suffix
+    return Path(source).stem + '_dis', Path(source).suffix
 
 
 def read(source):

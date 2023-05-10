@@ -35,14 +35,14 @@ def inference(source: Union[str, np.ndarray], save=False, silent=False, output='
     :return: (numpy.ndarray)dichotomous segmentation image
     """
     if type(source) == str:
-        src_name, extension = get_name(source)
+        output, extension = get_name(source)
         source = read(source)
     else:
-        src_name, extension = output, '.png'
+        extension = '.png'
     net = init_model()
     image = pre_processing(source).to(device)
     result = net(image)
-    output = post_processing(result, source)
+    output_image = post_processing(result, source)
     if save:
-        write(f"{src_name}_dis{extension}", output, silent)
-    return output
+        write(f"{output}{extension}", output_image, silent)
+    return output_image
