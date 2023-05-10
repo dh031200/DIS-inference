@@ -12,7 +12,7 @@ Inference implementation of Dichotomous Image Segmentation
 
 | Origin | DIS |
 |--|--|
-|![Before](assets/Lenna.png)|![After](assets/Lenna_dis.png)|
+|![Before](https://github.com/dh031200/DIS-inference/blob/main/assets/Lenna.png)|![After](https://github.com/dh031200/DIS-inference/blob/main/assets/Lenna_dis.png)|
 
 <br>
 
