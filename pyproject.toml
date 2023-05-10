@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = 'Inference implementation for Dichotomous Image Segmentation'
 readme = "README.md"
 requires-python = ">=3.7"
-license = "Apache-2.0"
+license = "AGPL-3.0-only"
 keywords = []
 authors = [
   { name = "dh031200", email = "imbird0312@gmail.com" },
@@ -24,12 +24,23 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = [
+  "click",
+  "numpy",
+  "opencv-python",
+  "torch",
+  "torchvision",
+  "gdown",
+  "pyyaml",
+]
 
 [project.urls]
 Documentation = "https://github.com/unknown/dis-inference#readme"
 Issues = "https://github.com/unknown/dis-inference/issues"
 Source = "https://github.com/unknown/dis-inference"
+
+[project.scripts]
+dis-inference = "dis_inference.cli:dis_inference"
 
 [tool.hatch.version]
 path = "src/dis_inference/__about__.py"
