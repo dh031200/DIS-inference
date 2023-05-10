@@ -35,9 +35,9 @@ dependencies = [
 ]
 
 [project.urls]
-Documentation = "https://github.com/unknown/dis-inference#readme"
-Issues = "https://github.com/unknown/dis-inference/issues"
-Source = "https://github.com/unknown/dis-inference"
+Documentation = "https://github.com/dh031200/dis-inference#readme"
+Issues = "https://github.com/dh031200/dis-inference/issues"
+Source = "https://github.com/dh031200/dis-inference"
 
 [project.scripts]
 dis-inference = "dis_inference.cli:dis_inference"
