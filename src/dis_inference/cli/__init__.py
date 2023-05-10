@@ -12,8 +12,7 @@ from ..models import (
     pre_processing,
     device,
     post_processing,
-    get_name,
-    read,
+    check_params,
     write,
 )
 
@@ -34,18 +33,7 @@ def inference(source: Union[str, np.ndarray], save=False, silent=False, output=N
     :param output: The name of output image file
     :return: (numpy.ndarray)dichotomous segmentation image
     """
-    if type(source) == str:
-        if output:
-            extension = (
-                '.png' if not any([output.endswith('png'), output.endswith('jpg'), output.endswith('jpeg')]) else ''
-            )
-        else:
-            output, extension = get_name(source)
-        source = read(source)
-    else:
-        extension = (
-            '.png' if not any([output.endswith('.png'), output.endswith('.jpg'), output.endswith('.jpeg')]) else ''
-        )
+    source, output, extension = check_params(source, output)
     net = init_model()
     image = pre_processing(source).to(device)
     result = net(image)
