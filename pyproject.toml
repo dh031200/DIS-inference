@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = 'Inference implementation for Dichotomous Image Segmentation'
 readme = "README.md"
 requires-python = ">=3.7"
-license = "AGPL-3.0-only"
+license = "Apache-2.0"
 keywords = []
 authors = [
   { name = "dh031200", email = "imbird0312@gmail.com" },

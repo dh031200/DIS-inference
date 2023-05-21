@@ -72,7 +72,7 @@ image = inference('Lenna.png', save=True)
 
 ## License
 
-`dis-inference` is distributed under the terms of the [AGPL-3.0-only](https://spdx.org/licenses/AGPL-3.0-only.html)
+`dis-inference` is distributed under the terms of the [Apache-2.0](https://spdx.org/licenses/Apache-2.0.html)
 license.
 
 ## Reference
