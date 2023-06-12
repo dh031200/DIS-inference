@@ -37,10 +37,11 @@ pip install dis-inference
 
 ### CLI
 
-**command**:  `dis-inference`
-**arguments**:
-　**--silent(optional)** : Whether to print verbose.
-　**Source image(mandatory)** : Source image path.
+#### **command**:  `dis-inference`
+#### **arguments**:
+
+* **--silent(optional)** : Whether to print verbose.
+* **Source image(mandatory)** : Source image path.
 
 ```console
 > dis-inference Lenna.png
