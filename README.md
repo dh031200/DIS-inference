@@ -66,7 +66,7 @@ cv2.imwrite('Lenna_dis.png', output)
 image = cv2.imread('Lenna.png')
 output = inference(image, save=True, output='Lenna_dis.png')
 
-# 3. With save parameter
+# 4. With save parameter
 image = inference('Lenna.png', save=True)
 ```
 
