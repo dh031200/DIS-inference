@@ -37,10 +37,10 @@ pip install dis-inference
 
 ### CLI
 
-**command**:  `dis-inference`    
-**arguments**:    
-　**--silent(optional)** : Whether to print verbose.    
-　**Source image(mandatory)** : Source image path.    
+**command**:  `dis-inference`
+**arguments**:
+　**--silent(optional)** : Whether to print verbose.
+　**Source image(mandatory)** : Source image path.
 
 ```console
 > dis-inference Lenna.png
@@ -66,7 +66,7 @@ cv2.imwrite('Lenna_dis.png', output)
 image = cv2.imread('Lenna.png')
 output = inference(image, save=True, output='Lenna_dis.png')
 
-# 3. With save parameter
+# 4. With save parameter
 image = inference('Lenna.png', save=True)
 ```
 
