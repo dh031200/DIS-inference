@@ -1,1 +1,2 @@
 deploy/DIS-inference.onnx filter=lfs diff=lfs merge=lfs -text
+docs/DIS-inference.onnx filter=lfs diff=lfs merge=lfs -text
